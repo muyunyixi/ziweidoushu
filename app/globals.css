@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── 汇文明朝体（子集化 WOFF2，移动端极速加载） ─── */
+@font-face {
+  font-family: 'HuiwenMingchao';
+  src: url('/fonts/HuiwenMingchao.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-huiwen {
+  font-family: 'HuiwenMingchao', 'STSong', 'Songti SC', 'SimSun', serif;
+}
+
+/* ─── 2.0 设计系统 Token + 命盘组件 --t-* 变量 ─────────────── */
+:root {
+  --font: -apple-system, 'PingFang SC', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --font-mono: 'SF Mono', 'Menlo', 'Noto Sans Mono', 'Consolas', monospace;
+
+  /* 背景层级 */
+  --bg-0: #FAFAF9;
+  --bg-1: #F4F3EF;
+  --bg-2: #ECEAE4;
+  --bg-inv: #0D0D0B;
+
+  /* 文字层级 */
+  --tx-0: #0D0D0B;
+  --tx-1: #1A1A18;
+  --tx-2: #4A4A45;
+  --tx-3: #8A8A82;
+  --tx-inv: #F0EDE8;
+  --tx-inv2: rgba(240,237,232,0.65);
+
+  /* 唯一强调色：墨金 */
+  --ac:     #B8922A;
+  --ac-dim: #7A5F1A;
+  --ac-bg:  rgba(184,146,42,0.07);
+  --ac-bdr: rgba(184,146,42,0.22);
+
+  /* 四化语义色 */
+  --lu:   #2D7A4A;
+  --quan: #1A56A8;
+  --ke:   #8A7018;
+  --ji:   #A83228;
+
+  /* 边框 */
+  --bdr:      rgba(0,0,0,0.07);
+  --bdr-med:  rgba(0,0,0,0.11);
+  --bdr-heavy:rgba(0,0,0,0.18);
+
+  /* 阴影 */
+  --sh-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --sh-sm: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --sh-md: 0 4px 20px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+  --sh-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+
+  /* 卡片/内容块背景 */
+  --bg-card: #FFFFFF;
+  --bg-page: #fbf6e8;
+
+  /* 命盘工作台专用 --t-* 变量（亮色主题） */
+  --t-bg:         #fcfaf2;
+  --t-surface:    rgba(244, 238, 222, 0.85);
+  --t-card:       rgba(255, 255, 255, 0.92);
+  --t-border:     rgba(184, 146, 42, 0.22);
+  --t-border-acc: rgba(184, 146, 42, 0.45);
+  --t-gold:       #9a6e12;
+  --t-text:       #1a1814;
+  --t-text1:      #242018;
+  --t-text2:      #4a4438;
+  --t-faint:      #857a64;
+
+  /* 圆角 */
+  --r-xs:  4px;
+  --r-sm:  8px;
+  --r-md:  12px;
+  --r-lg:  16px;
+  --r-xl:  24px;
+  --r-pill:999px;
+}
+
+/* ─── 暗色模式 Token 覆盖 ──────────────────────────────── */
+[data-theme="dark"] {
+  --bg-0: #020810;
+  --bg-1: #0a1020;
+  --bg-2: #141e30;
+  --bg-inv: #f0ede8;
+
+  --tx-0: #e8eef6;
+  --tx-1: #dce4f0;
+  --tx-2: #9db0d0;
+  --tx-3: #6a7a96;
+  --tx-inv: #0d0d0b;
+  --tx-inv2: rgba(13,13,11,0.65);
+
+  --ac:     #d4a843;
+  --ac-dim: #e8c060;
+  --ac-bg:  rgba(212,168,67,0.10);
+  --ac-bdr: rgba(212,168,67,0.25);
+
+  --bdr:      rgba(255,255,255,0.07);
+  --bdr-med:  rgba(255,255,255,0.12);
+  --bdr-heavy:rgba(255,255,255,0.20);
+
+  --sh-xs: 0 1px 2px rgba(0,0,0,0.3);
+  --sh-sm: 0 2px 8px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
+  --sh-md: 0 4px 20px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.35);
+  --sh-lg: 0 12px 40px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
+
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-page: #020810;
+
+  /* 命盘工作台专用 --t-* 变量（暗色主题） */
+  --t-bg:         #060d1a;
+  --t-surface:    rgba(14, 24, 44, 0.85);
+  --t-card:       rgba(12, 20, 38, 0.88);
+  --t-border:     rgba(212, 168, 67, 0.18);
+  --t-border-acc: rgba(212, 168, 67, 0.40);
+  --t-gold:       #d4a843;
+  --t-text:       #e8eef6;
+  --t-text1:      #dce4f0;
+  --t-text2:      #b0c2de;
+  --t-faint:      #788ba8;
+}
+
+/* ─── 全局基础 ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--bg-0);
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg-0);
+  color: var(--tx-1);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── 滚动条 ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-1); }
+::-webkit-scrollbar-thumb { background: var(--bdr-heavy); border-radius: 3px; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── 选中文字 ───────────────────────────────────────────── */
+::selection {
+  background: rgba(184,146,42,0.15);
+  color: var(--ac-dim);
+}
+
+/* ─── 命盘卡片毛玻璃样式 ─────────────────────────────────── */
+.card-glass {
+  background: var(--t-card);
+  border: 1px solid var(--t-border);
+  box-shadow: var(--sh-sm);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.card-inner {
+  background: var(--t-surface);
+  border: 1px solid var(--t-border);
+}
+
+/* ─── 工具类 ─────────────────────────────────────────────── */
+.container-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 768px) {
+  .container-page { padding: 0 14px; }
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-sm);
+}
+.card-flat {
+  background: var(--bg-card);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-md);
+}
+.card-tinted {
+  background: var(--bg-1);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-md);
+}
+
+.section-dark {
+  background: var(--bg-inv);
+  color: var(--tx-inv);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: var(--r-pill);
+  background: var(--tx-0);
+  color: var(--bg-0);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.12s ease;
+  text-decoration: none;
+}
+.btn-primary:hover { opacity: 0.86; }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 28px;
+  border-radius: var(--r-pill);
+  background: var(--ac);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+  text-decoration: none;
+}
+.btn-accent:hover { background: var(--ac-dim); }
+.btn-accent:active { transform: scale(0.98); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 22px;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--tx-1);
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid var(--bdr-heavy);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  text-decoration: none;
+}
+.btn-ghost:hover { background: var(--bg-2); }
+
+/* 四化 Badge */
+.badge-lu   { color: var(--lu);   background: rgba(45,122,74,0.08);   border: 1px solid rgba(45,122,74,0.20);   }
+.badge-quan { color: var(--quan); background: rgba(26,86,168,0.08);   border: 1px solid rgba(26,86,168,0.20);   }
+.badge-ke   { color: var(--ke);   background: rgba(138,112,24,0.08);  border: 1px solid rgba(138,112,24,0.20);  }
+.badge-ji   { color: var(--ji);   background: rgba(168,50,40,0.08);   border: 1px solid rgba(168,50,40,0.20);   }
+
+.sihua-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 1px 5px;
+  border-radius: var(--r-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.input-base {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--bdr-med);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--tx-1);
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.input-base:focus { border-color: var(--ac); }
+.input-base::placeholder { color: var(--tx-3); }
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--bdr);
+}
+
+.label-section {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tx-3);
+  font-weight: 500;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-up { animation: fade-up 0.5s ease forwards; }
+.animate-fade-in { animation: fade-in 0.4s ease forwards; }
+
+/* ─── 渐变文字 ──────────────────────────────────────────── */
+.grad-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block;
+}
+.grad-text-dark {
+  background-image: linear-gradient(160deg, #c8993a 0%, #f0d070 40%, #c8993a 70%, #f0c755 100%);
+}
+.grad-text-light {
+  background-image: linear-gradient(160deg, #6a4206 0%, #9a6a10 40%, #6a4206 70%, #885010 100%);
+}
+
+[data-theme="dark"] select { color-scheme: dark; }
+[data-theme="dark"] select option { background-color: var(--bg-2); color: var(--tx-1); }
